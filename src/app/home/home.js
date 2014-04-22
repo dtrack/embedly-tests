@@ -50,6 +50,7 @@ angular.module( 'ngBoilerplate.home', [
             function (response) {
                 console.log('success');
                 console.log(response);
+                $scope.raw = JSON.stringify(response, undefined, 2);
                 $scope.embedly = $sce.trustAsHtml(response.data.html);
             },
             function (){

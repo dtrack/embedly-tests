@@ -7,7 +7,14 @@
 </div>
 
 <div class="marketing">
-  <div class="embedly col-md-8" ng-bind-html="embedly">
+  <div class="embedly col-md-6">
+    <h2>Embed Element:</h2>
+    <div ng-bind-html="embedly">
+    </div>
+  </div>
+  <div class="embedly col-md-6">
+    <h2>Raw Response:</h2>
+    <pre>{{ raw }}</pre>
   </div>
 </div>
 

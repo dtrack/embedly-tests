@@ -5,23 +5,20 @@ angular.module( 'embedly', [] )
     var baseUrl = 'http://api.embed.ly/1/oembed?';
 
     function makeRequest(args) {
-        var urls = args.urls || [args.url];
+        var url = args.url;
         var maxWidth = args.maxWidth;
         var maxHeight = args.maxHeight;
         var deferred = $q.defer();
         var params = {};
         params.key = apiKey;
         params.format = 'json';
-        if (urls.length > 1) {
-            param.urls = urls;
-        }
-        else {
-            params.url = urls[0];
-        }
+        // have to make the url param separate because the "params" property
+        // of the $http method doesn't seem to encode properly
+        apiUrl = baseUrl + 'url=' + encodeURIComponent(url);
         if (maxHeight) { params.maxheight = maxHeight; }
         if (maxWidth) { params.maxwidth = maxWidth; }
         $http({
-            url: baseUrl,
+            url: apiUrl,
             params: params,
             method: 'GET'
         }).then(success, error);
